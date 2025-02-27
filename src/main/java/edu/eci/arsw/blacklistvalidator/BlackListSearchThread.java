@@ -1,7 +1,10 @@
 package edu.eci.arsw.blacklistvalidator;
 
 import static edu.eci.arsw.blacklistvalidator.HostBlackListsValidator.*;
-import edu.eci.arsw.spamkeywordsdatasource.*;
+import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class BlackListSearchThread implements Runnable {
     private final String host;
@@ -18,8 +21,10 @@ public class BlackListSearchThread implements Runnable {
 
     @Override
     public void run() {
+        AtomicInteger ocurrencesCount = null;
         for (int i = startIndex; i < endIndex && ocurrencesCount.get() < BLACK_LIST_ALARM_COUNT; i++) {
             if (datasource.isInBlackListServer(i, host)) {
+                HashSet blackListOcurrences = new HashSet<>();
                 synchronized (blackListOcurrences) {
                     blackListOcurrences.add(i);
                 }

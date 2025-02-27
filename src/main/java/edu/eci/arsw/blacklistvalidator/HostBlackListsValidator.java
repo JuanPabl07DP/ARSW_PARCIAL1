@@ -22,7 +22,7 @@ public class HostBlackListsValidator {
     private static final List<Integer> blackListOcurrences = new ArrayList<>();
     private static final AtomicInteger ocurrencesCount = new AtomicInteger(0);
     private static final int DEFAULT_THREADS = 5;
-    private static final int BLACK_LIST_ALARM_COUNT = 5;
+    static final int BLACK_LIST_ALARM_COUNT = 5;
     public boolean checkHost(String host) {
         return checkHost(host, DEFAULT_THREADS);
     }
