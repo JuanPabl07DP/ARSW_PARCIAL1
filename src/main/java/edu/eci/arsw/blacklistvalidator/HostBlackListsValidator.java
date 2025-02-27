@@ -5,7 +5,7 @@
  */
 package edu.eci.arsw.blacklistvalidator;
 
-import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+//import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
 import edu.eci.arsw.blacklistvalidator.BlackListSearchThread;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -56,18 +56,28 @@ public class HostBlackListsValidator {
 
         boolean isNotTrustworthy = ocurrencesCount.get() >= BLACK_LIST_ALARM_COUNT;
 
-        if (isNotTrustworthy) {
-            System.out.println("Host " + host + ocurrencesCount.get());
-            for (Integer listIndex : blackListOcurrences) {
-                System.out.println(listIndex);
-            }
-            datasource.reportAsNotTrustworthy(host);
-        } else {
-            System.out.println("Host " + host + ocurrencesCount.get());
-            datasource.reportAsTrustworthy(host);
-        }
+//        if (isNotTrustworthy) {
+//            System.out.println("Host " + host + ocurrencesCount.get());
+//            for (Integer listIndex : blackListOcurrences) {
+//                System.out.println(listIndex);
+//            }
+//            datasource.reportAsNotTrustworthy(host);
+//        } else {
+//            System.out.println("Host " + host + ocurrencesCount.get());
+//            datasource.reportAsTrustworthy(host);
+//        }
 
         return isNotTrustworthy;
+    }
+
+    private static class HostBlackListsDataSourceFacade {
+        public static HostBlackListsDataSourceFacade getInstance() {
+            return null;
+        }
+
+        public int getRegisteredServersCount() {
+            return 0;
+        }
     }
 }
 

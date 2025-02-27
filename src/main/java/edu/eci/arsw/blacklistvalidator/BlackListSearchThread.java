@@ -1,7 +1,7 @@
 package edu.eci.arsw.blacklistvalidator;
 
 import static edu.eci.arsw.blacklistvalidator.HostBlackListsValidator.*;
-import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+//import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
 
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,6 +30,16 @@ public class BlackListSearchThread implements Runnable {
                 }
                 ocurrencesCount.incrementAndGet();
             }
+        }
+    }
+
+    private static class HostBlackListsDataSourceFacade {
+        public static HostBlackListsDataSourceFacade getInstance() {
+            return getInstance();
+        }
+
+        public boolean isInBlackListServer(int i, String host) {
+            return false;
         }
     }
 }
