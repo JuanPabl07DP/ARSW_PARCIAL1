@@ -22,11 +22,11 @@ public class HostBlackListsValidator {
     private static final AtomicInteger ocurrencesCount = new AtomicInteger(0);
     private static final int DEFAULT_THREADS = 5;
     private static final int BLACK_LIST_ALARM_COUNT = 5;
-    public int checkHost(String host) {
+    public boolean checkHost(String host) {
         return checkHost(host, DEFAULT_THREADS);
     }
 
-    public int checkHost(String host, int numThread) {
+    public boolean checkHost(String host, int numThread) {
         blackListOcurrences.clear();
         ocurrencesCount.set(0);
 
@@ -55,16 +55,16 @@ public class HostBlackListsValidator {
 
         boolean isNotTrustworthy = ocurrencesCount.get() >= BLACK_LIST_ALARM_COUNT;
 
-//        if (isNotTrustworthy) {
-//            System.out.println("Host " + host + ocurrencesCount.get());
-//            for (Integer listIndex : blackListOcurrences) {
-//                System.out.println(listIndex);
-//            }
-//            datasource.reportAsNotTrustworthy(host);
-//        } else {
-//            System.out.println("Host " + host + ocurrencesCount.get());
-//            datasource.reportAsTrustworthy(host);
-//        }
+        if (isNotTrustworthy) {
+            System.out.println("Host " + host + ocurrencesCount.get());
+            for (Integer listIndex : blackListOcurrences) {
+                System.out.println(listIndex);
+            }
+            datasource.reportAsNotTrustworthy(host);
+        } else {
+            System.out.println("Host " + host + ocurrencesCount.get());
+            datasource.reportAsTrustworthy(host);
+        }
 
         return isNotTrustworthy;
     }
