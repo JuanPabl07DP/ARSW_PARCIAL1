@@ -22,11 +22,11 @@ public class HostBlackListsValidator {
     private static final AtomicInteger ocurrencesCount = new AtomicInteger(0);
     private static final int DEFAULT_THREADS = 5;
     private static final int BLACK_LIST_ALARM_COUNT = 5;
-    public boolean checkHost(String host) {
+    public int checkHost(String host) {
         return checkHost(host, DEFAULT_THREADS);
     }
 
-    public boolean checkHost(String host, int numThread) {
+    public int checkHost(String host, int numThread) {
         blackListOcurrences.clear();
         ocurrencesCount.set(0);
 
